@@ -15,11 +15,13 @@ export async function loadEvents(): Promise<CalendarEvent[]> {
   return db.getAll("events");
 }
 
-export async function saveEvent(ev: Omit<CalendarEvent, "taskIds"> & { taskIds?: string[] }): Promise<CalendarEvent> {
+export async function saveEvent(
+  ev: Omit<CalendarEvent, "id" | "taskIds"> & { id?: string; taskIds?: string[] }
+): Promise<CalendarEvent> {
   const db = await getDB();
   const event: CalendarEvent = {
     ...ev,
-    id: ev.id || genId(),
+    id: ev.id ?? genId(),
     taskIds: ev.taskIds ?? [],
   };
   await db.put("events", event);

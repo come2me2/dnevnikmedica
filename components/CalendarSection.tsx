@@ -80,7 +80,7 @@ export function CalendarSection() {
     location?: string;
   }) => {
     const saved = await saveEvent({
-      id: ev.id || undefined,
+      ...(ev.id && { id: ev.id }),
       title: ev.title,
       start: ev.start,
       end: ev.end,

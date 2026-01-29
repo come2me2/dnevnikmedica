@@ -10,7 +10,8 @@ import {
   deleteCheatSheet,
 } from "@/lib/store";
 import type { Subject, CheatSheet } from "@/lib/db";
-import { Plus, Trash2, FileText, Image, Type, X } from "lucide-react";
+import Image from "next/image";
+import { Plus, Trash2, FileText, Image as ImageIcon, Type, X } from "lucide-react";
 import { genId } from "@/lib/db";
 
 export default function CheatSheetsPage() {
@@ -188,7 +189,7 @@ export default function CheatSheetsPage() {
                   >
                     {sh.type === "text" && <Type className="h-5 w-5 text-slate-500 shrink-0" />}
                     {sh.type === "pdf" && <FileText className="h-5 w-5 text-red-500 shrink-0" />}
-                    {sh.type === "image" && <Image className="h-5 w-5 text-emerald-500 shrink-0" />}
+                    {sh.type === "image" && <ImageIcon className="h-5 w-5 text-emerald-500 shrink-0" />}
                     <button
                       type="button"
                       onClick={() => setViewing(sh)}
@@ -386,10 +387,13 @@ function SheetViewer({ sheet, onClose }: { sheet: CheatSheet; onClose: () => voi
             />
           )}
           {sheet.type === "image" && dataUrl && (
-            <img
+            <Image
               src={dataUrl}
               alt={sheet.name}
+              width={1200}
+              height={900}
               className="max-w-full h-auto rounded-lg border border-slate-200 dark:border-slate-700"
+              unoptimized
             />
           )}
         </div>
