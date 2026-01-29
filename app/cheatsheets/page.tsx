@@ -10,7 +10,6 @@ import {
   deleteCheatSheet,
 } from "@/lib/store";
 import type { Subject, CheatSheet } from "@/lib/db";
-import Image from "next/image";
 import { Plus, Trash2, FileText, Image as ImageIcon, Type, X } from "lucide-react";
 import { genId } from "@/lib/db";
 
@@ -387,13 +386,11 @@ function SheetViewer({ sheet, onClose }: { sheet: CheatSheet; onClose: () => voi
             />
           )}
           {sheet.type === "image" && dataUrl && (
-            <Image
+            // eslint-disable-next-line @next/next/no-img-element -- user-uploaded base64; dimensions unknown
+            <img
               src={dataUrl}
               alt={sheet.name}
-              width={1200}
-              height={900}
               className="max-w-full h-auto rounded-lg border border-slate-200 dark:border-slate-700"
-              unoptimized
             />
           )}
         </div>
