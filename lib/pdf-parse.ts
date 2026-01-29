@@ -60,7 +60,7 @@ export async function extractTextFromPDF(file: File): Promise<string> {
     const page = await doc.getPage(i);
     const content = await page.getTextContent();
     const text = content.items
-      .map((it: { str?: string }) => (it as { str?: string }).str || "")
+      .map((it) => ("str" in it ? it.str || "" : ""))
       .join(" ");
     chunks.push(text);
   }
