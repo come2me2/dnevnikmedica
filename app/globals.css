@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --border: #e2e8f0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #f1f5f9;
+    --card: #1e293b;
+    --border: #334155;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* react-big-calendar overrides */
+.rbc-calendar {
+  @apply font-sans;
+}
+.rbc-toolbar {
+  @apply flex flex-wrap items-center gap-2 mb-4;
+}
+.rbc-toolbar button {
+  @apply px-3 py-1.5 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700 transition;
+}
+.rbc-toolbar-label {
+  @apply flex-1 text-center font-semibold text-slate-800 dark:text-slate-100;
+}
+.rbc-month-view,
+.rbc-time-view {
+  @apply border border-slate-200 dark:border-slate-600 rounded-lg overflow-hidden;
+}
+.rbc-day-bg + .rbc-day-bg {
+  @apply border-l border-slate-200 dark:border-slate-600;
+}
+.rbc-header {
+  @apply py-2 text-slate-600 dark:text-slate-400 font-medium border-b border-slate-200 dark:border-slate-600;
+}
+.rbc-date-cell {
+  @apply p-1 text-right text-sm text-slate-500;
+}
+.rbc-event {
+  @apply rounded px-1 py-0.5 text-xs bg-primary-500 text-white border-0;
+}
+.rbc-event:focus {
+  @apply outline-none ring-2 ring-primary-400 ring-offset-2;
+}
+.rbc-today {
+  @apply bg-primary-50 dark:bg-primary-900/20;
+}
+.rbc-off-range-bg {
+  @apply bg-slate-50 dark:bg-slate-800/50;
+}
